@@ -1,0 +1,26 @@
+.image {
+  width: 300px;
+  height: auto;
+
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.image:not(:last-child) {
+  margin-right: 20px;
+}
+
+/* the sixth task */
+
+#validation-input {
+  border: 3px solid #bdbdbd;
+}
+
+#validation-input.valid {
+  border-color: #4caf50;
+}
+
+#validation-input.invalid {
+  border-color: #f44336;
+}
