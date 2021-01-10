@@ -19,7 +19,10 @@ const images = [
 const listRef = document.querySelector("#gallery");
 
 const imagesLink = images.reduce((acc, { url, alt }) => {
-  const image = `<img class = "image" alt = ${alt} src = ${url} >`;
+  const image = `
+  <li>
+  <img class = "image" alt = ${alt} src = ${url} >
+  </li>`;
   acc += image;
   return acc;
 }, "");

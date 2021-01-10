@@ -5,7 +5,7 @@ console.log(`В списке ${amountListItems} категории.`);
 
 const arraylistItemsRef = [...listItemsRef];
 
-arraylistItemsRef.map((item) => {
+arraylistItemsRef.forEach((item) => {
   console.log(`Категория: ${item.firstElementChild.innerHTML}`);
   console.log(
     `Количество элементов: ${item.lastElementChild.childElementCount}`

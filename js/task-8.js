@@ -6,24 +6,51 @@ const boxesContainerRef = document.querySelector("#boxes");
 renderBtnRef.addEventListener("click", createBoxes);
 destroyBtnRef.addEventListener("click", destroyBoxes);
 
+let finalSizeValue = 0;
+
 function createBoxes(amount) {
   amount = amountValueRef.value;
   let boxes = [];
-  for (let i = 0; i < amount; i += 1) {
-    let box = boxes[i];
-    box = document.createElement("div");
-    box.classList.add("box");
+  if (finalSizeValue === 0) {
+    for (let i = 0; i < amount; i += 1) {
+      let box = boxes[i];
+      box = document.createElement("div");
+      box.classList.add("box");
 
-    box.style.backgroundColor = getRandomColor();
+      box.style.backgroundColor = getRandomColor();
 
-    let sizeValue = 30 + 10 * i;
-    box.style.height = `${sizeValue}px`;
-    box.style.width = `${sizeValue}px`;
+      let sizeValue = 30 + 10 * i;
+      box.style.height = `${sizeValue}px`;
+      box.style.width = `${sizeValue}px`;
 
-    boxes.push(box);
+      boxes.push(box);
+
+      finalSizeValue = sizeValue;
+    }
+
+    boxesContainerRef.append(...boxes);
+    return;
   }
 
-  boxesContainerRef.append(...boxes);
+  if (finalSizeValue > 0) {
+    for (let i = 0; i < amount; i += 1) {
+      let box = boxes[i];
+      box = document.createElement("div");
+      box.classList.add("box");
+
+      box.style.backgroundColor = getRandomColor();
+
+      let sizeValue = finalSizeValue + 10;
+      box.style.height = `${sizeValue}px`;
+      box.style.width = `${sizeValue}px`;
+
+      boxes.push(box);
+
+      finalSizeValue = sizeValue;
+    }
+    boxesContainerRef.append(...boxes);
+    return;
+  }
 }
 
 function getRandomColor() {
@@ -38,5 +65,6 @@ function getRandomColor() {
 function destroyBoxes() {
   const boxes = document.querySelectorAll(".box");
   const result = [...boxes].map((box) => box.remove());
+  finalSizeValue = 0;
   return result;
 }
